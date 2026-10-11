@@ -1,0 +1,36 @@
+[package]
+name = "pi-rewrite"
+version = "0.1.0"
+edition = "2021"
+authors = ["CarbonWalls"]
+license = "MIT"
+description = "Fast native rewrite of pi with native multikey, system prompt, peer subagents, and ppi (profiles)."
+
+[[bin]]
+name = "pi-rewrite"
+path = "src/main.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
+panic = "abort"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream", "rustls-tls", "charset"] }
+futures = "0.3"
+anyhow = "1"
+thiserror = "1"
+clap = { version = "4", features = ["derive", "wrap_help"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+chrono = { version = "0.4", features = ["serde"] }
+regex = "1"
+bytes = "1"
+tokio-util = { version = "0.7", features = ["codec"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+dirs = "5"
+walkdir = "2"
